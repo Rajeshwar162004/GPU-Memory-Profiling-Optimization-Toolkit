@@ -39,6 +39,14 @@ add_executable(transpose kernels/transpose/transpose.cu)
 target_link_libraries(transpose ${CUDA_LIBRARIES})
 set_target_properties(transpose PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 
+add_executable(transpose_naive kernels/transpose/naive.cu)
+target_link_libraries(transpose_naive ${CUDA_LIBRARIES})
+set_target_properties(transpose_naive PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+
+add_executable(transpose_padded kernels/transpose/padded.cu)
+target_link_libraries(transpose_padded ${CUDA_LIBRARIES})
+set_target_properties(transpose_padded PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+
 # Matrix Multiplication
 add_executable(matmul kernels/matmul/matmul.cu)
 target_link_libraries(matmul ${CUDA_LIBRARIES})
@@ -50,11 +58,11 @@ target_link_libraries(reduction ${CUDA_LIBRARIES})
 set_target_properties(reduction PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 
 # Install targets (optional)
-install(TARGETS vector_add_naive vector_add_optimized strided_access transpose matmul reduction
+install(TARGETS vector_add_naive vector_add_optimized strided_access transpose transpose_naive transpose_padded matmul reduction
         RUNTIME DESTINATION bin)
 
 # Add custom target to build all
-add_custom_target(build_all DEPENDS vector_add_naive vector_add_optimized strided_access transpose matmul reduction)
+add_custom_target(build_all DEPENDS vector_add_naive vector_add_optimized strided_access transpose transpose_naive transpose_padded matmul reduction)
 
 # Print configuration
 message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")

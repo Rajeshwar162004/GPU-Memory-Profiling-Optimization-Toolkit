@@ -1,0 +1,70 @@
+[
+  {
+    "kernel": "transpose_naive(const float *, float *, int, int)",
+    "device": {
+      "name": "Device 0",
+      "compute_capability": "8.9",
+      "device_id": 0
+    },
+    "execution": {
+      "elapsed_cycles": 20450720.0,
+      "duration_ns": 137984.0,
+      "registers_per_thread": 16,
+      "dynamic_shared_memory": 0,
+      "static_shared_memory": 0
+    },
+    "memory": {
+      "memory_throughput_pct": 67.45,
+      "dram_throughput_pct": 13.6,
+      "l2_throughput_pct": 67.45
+    },
+    "analysis": {
+      "kernel_name": "transpose_naive(const float *, float *, int, int)",
+      "issues_count": 2,
+      "issues": [
+        {
+          "id": "UNCOALESCED_GLOBAL_ACCESS",
+          "problem": "Potentially Inefficient / Uncoalesced Global Memory Access",
+          "severity": "HIGH",
+          "evidence": "Memory is more heavily utilized than Compute: Look at the Memory Workload Analysis section to identify the L2 bottleneck. Check memory replay (coalescing) metrics to make sure you're efficiently utilizing the bytes transferred. Also consider whether it is possible to do more work per memory access (kernel fusion) or whether there are values you can (re)compute.",
+          "explanation": "Threads in a warp are accessing global memory addresses with large strides or non-contiguous layouts. This forces the GPU memory controller to issue multiple 32-byte cache line transactions for a single warp instruction, wasting memory bandwidth.",
+          "category": "Global Memory"
+        },
+        {
+          "id": "LIKELY_MEMORY_BOUND",
+          "problem": "Kernel Bottleneck: Memory-Bound Execution",
+          "severity": "HIGH",
+          "evidence": "Memory throughput (67.5%) significantly dominates compute pipeline utilization (5.1%).",
+          "explanation": "Execution speed is constrained by GPU memory bandwidth or access latency rather than arithmetic processing power. Optimizations should focus on data reuse, coalescing memory reads/writes, and leveraging shared memory.",
+          "category": "Bottleneck Classification"
+        }
+      ],
+      "device": "Device 0"
+    },
+    "classification": {
+      "category": "\ud83d\udd25 MEMORY-LIMITED / MEMORY-INEFFICIENT",
+      "confidence": "HIGH",
+      "rationale": "Memory pipeline throughput or memory access inefficiencies (coalescing, bank conflicts, low cache reuse) dominate execution time."
+    },
+    "recommendations": [
+      {
+        "issue_id": "UNCOALESCED_GLOBAL_ACCESS",
+        "problem": "Potentially Inefficient / Uncoalesced Global Memory Access",
+        "severity": "HIGH",
+        "title": "Reorganize Thread Indexing for Global Memory Coalescing",
+        "description": "Ensure contiguous threads in a warp access contiguous memory locations (unit stride).",
+        "example": "// Before (Strided Access):\noutput[x * height + y] = input[y * width + x];\n\n// After (Coalesced access via Shared Memory Tiling):\ntile[threadIdx.y][threadIdx.x] = input[y * width + x]; // Coalesced load\n__syncthreads();\noutput[y_out * height + x_out] = tile[threadIdx.x][threadIdx.y]; // Coalesced write\n",
+        "reason": "Coalesced global memory accesses allow the hardware to fulfill warp loads/stores in a single 32-byte transaction."
+      },
+      {
+        "issue_id": "LIKELY_MEMORY_BOUND",
+        "problem": "Kernel Bottleneck: Memory-Bound Execution",
+        "severity": "HIGH",
+        "title": "Reduce Memory Traffic & Increase Arithmetic Intensity",
+        "description": "Kernel execution speed is bound by memory bandwidth. Combine operations (kernel fusion) or compute values on-the-fly where possible.",
+        "example": "// Kernel Fusion: Combine vector addition and scaling into a single kernel pass\nc[i] = alpha * a[i] + beta * b[i];\n",
+        "reason": "Kernel fusion eliminates intermediate host/device roundtrips and global memory store/load overheads."
+      }
+    ]
+  }
+]

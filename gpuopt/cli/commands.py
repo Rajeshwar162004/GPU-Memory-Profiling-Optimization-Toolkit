@@ -210,7 +210,11 @@ Examples:
             
             result = {
                 'kernel': kernel_data.name,
-                'device': kernel_data.device_info,
+                'device': {
+                    'name': kernel_data.device_info.name,
+                    'compute_capability': kernel_data.device_info.compute_capability,
+                    'device_id': kernel_data.device_info.device_id
+                },
                 'execution': kernel_data.execution_metrics,
                 'memory': kernel_data.memory_metrics,
                 'analysis': analysis,

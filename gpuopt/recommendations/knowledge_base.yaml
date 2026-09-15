@@ -1,0 +1,53 @@
+# GPUOpt Optimization Knowledge Base
+
+SHARED_MEMORY_BANK_CONFLICT:
+  title: "Add Shared Memory Tile Padding"
+  description: "Pad the 2D shared memory tile allocation by 1 element along the column dimension to break bank alignment stride conflicts."
+  example: |
+    // Before (Bank Conflicts):
+    __shared__ float tile[32][32];
+
+    // After (No Bank Conflicts):
+    __shared__ float tile[32][33];
+  reason: "Padding changes the stride from 32 (matching the 32 shared memory banks) to 33, ensuring adjacent thread rows map to distinct banks."
+
+UNCOALESCED_GLOBAL_ACCESS:
+  title: "Reorganize Thread Indexing for Global Memory Coalescing"
+  description: "Ensure contiguous threads in a warp access contiguous memory locations (unit stride)."
+  example: |
+    // Before (Strided Access):
+    output[x * height + y] = input[y * width + x];
+
+    // After (Coalesced access via Shared Memory Tiling):
+    tile[threadIdx.y][threadIdx.x] = input[y * width + x]; // Coalesced load
+    __syncthreads();
+    output[y_out * height + x_out] = tile[threadIdx.x][threadIdx.y]; // Coalesced write
+  reason: "Coalesced global memory accesses allow the hardware to fulfill warp loads/stores in a single 32-byte transaction."
+
+EXCESSIVE_GLOBAL_MEMORY_TRAFFIC:
+  title: "Implement Shared Memory Tiling / Data Reuse"
+  description: "Cache frequently accessed input elements in shared memory or CUDA registers to prevent repeated DRAM reads."
+  example: |
+    // Before: Repeated DRAM reads in loop
+    for (int k = 0; k < N; ++k) sum += A[row * N + k] * B[k * N + col];
+
+    // After: Tiled Shared Memory Loads
+    __shared__ float tileA[TILE_SIZE][TILE_SIZE];
+    __shared__ float tileB[TILE_SIZE][TILE_SIZE];
+  reason: "Shared memory bandwidth is ~10x higher than global DRAM bandwidth and eliminates redundant bus traffic."
+
+POOR_CACHE_BEHAVIOR:
+  title: "Optimize Data Layout / Struct of Arrays (SoA)"
+  description: "Improve spatial and temporal locality by switching from Array of Structures (AoS) to Structure of Arrays (SoA) or reordering loops."
+  example: |
+    // Before (AoS): struct Particle { float x, y, z; }; Particle p[1024];
+    // After (SoA): struct Particles { float x[1024]; float y[1024]; float z[1024]; };
+  reason: "SoA ensures that cache lines pulled into L1/L2 contain only relevant fields for parallel thread execution."
+
+LIKELY_MEMORY_BOUND:
+  title: "Reduce Memory Traffic & Increase Arithmetic Intensity"
+  description: "Kernel execution speed is bound by memory bandwidth. Combine operations (kernel fusion) or compute values on-the-fly where possible."
+  example: |
+    // Kernel Fusion: Combine vector addition and scaling into a single kernel pass
+    c[i] = alpha * a[i] + beta * b[i];
+  reason: "Kernel fusion eliminates intermediate host/device roundtrips and global memory store/load overheads."

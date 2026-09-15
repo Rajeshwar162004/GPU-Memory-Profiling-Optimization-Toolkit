@@ -1,0 +1,57 @@
+==PROF== Connected to process 25323 (/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/transpose)
+Matrix Transpose Benchmark (1024x1024)
+====================================
+Naive: 0.130 ms (avg over 100 runs)
+Verification: PASSED
+Shared Memory: 0.054 ms (avg over 100 runs)
+Verification: PASSED
+Padded Shared Memory: 0.034 ms (avg over 100 runs)
+Verification: PASSED
+==PROF== Disconnected from process 25323
+"ID","Process ID","Process Name","Host Name","Kernel Name","Context","Stream","Block Size","Grid Size","Device","CC","Section Name","Metric Name","Metric Unit","Metric Value","Rule Name","Rule Type","Rule Description","Estimated Speedup Type","Estimated Speedup"
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","DRAM Frequency","hz","6,988,868,274.58",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","SM Frequency","hz","1,543,550,943.10",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","Elapsed Cycles","cycle","213,048",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","Memory Throughput","%","67.45",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","DRAM Throughput","%","13.60",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","Duration","ns","137,984",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","L1/TEX Cache Throughput","%","83.32",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","L2 Cache Throughput","%","67.45",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","SM Active Cycles","cycle","200,279.50",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU Speed Of Light Throughput","Compute (SM) Throughput","%","5.13",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","SpeedOfLight","","","","SOLBottleneck","OPT","Memory is more heavily utilized than Compute: Look at the Memory Workload Analysis section to identify the L2 bottleneck. Check memory replay (coalescing) metrics to make sure you're efficiently utilizing the bytes transferred. Also consider whether it is possible to do more work per memory access (kernel fusion) or whether there are values you can (re)compute.","",""
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Block Size","","1,024",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Function Cache Configuration","","CachePreferNone",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Grid Size","","1,024",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Registers Per Thread","register/thread","16",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Shared Memory Configuration Size","byte","8,192",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Driver Shared Memory Per Block","byte/block","1,024",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Dynamic Shared Memory Per Block","byte/block","0",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Static Shared Memory Per Block","byte/block","0",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","# SMs","SM","24",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Stack Size","","1,024",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Threads","thread","1,048,576",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","# TPCs","","12",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Enabled TPC IDs","","all",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Uses Green Context","","0",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Launch Statistics","Waves Per SM","","42.67",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Block Limit SM","block","24",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Block Limit Registers","block","4",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Block Limit Shared Mem","block","8",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Block Limit Warps","block","1",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Theoretical Active Warps per SM","warp","32",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Theoretical Occupancy","%","66.67",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Achieved Occupancy","%","38.12",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","Achieved Active Warps Per SM","warp","18.30",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","","","","AchievedOccupancy","OPT","The difference between calculated theoretical (66.7%) and measured achieved occupancy (38.1%) can be the result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on optimizing occupancy.","local","42.82"
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","Occupancy","","","","TheoreticalOccupancy","OPT","The 8.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the hardware maximum of 12. This kernel's theoretical occupancy (66.7%) is limited by the number of warps within each block.","local","33.33"
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Average DRAM Active Cycles","cycle","131,168",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Total DRAM Elapsed Cycles","cycle","3,857,408",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Average L1 Active Cycles","cycle","200,279.50",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Total L1 Elapsed Cycles","cycle","5,112,680",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Average L2 Active Cycles","cycle","195,032.81",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Total L2 Elapsed Cycles","cycle","3,164,016",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Average SM Active Cycles","cycle","200,279.50",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Total SM Elapsed Cycles","cycle","5,112,680",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Average SMSP Active Cycles","cycle","188,705.26",
+"0","25323","transpose","127.0.0.1","transpose_naive(const float *, float *, int, int)","1","7","(32, 32, 1)","(32, 32, 1)","0","8.9","GPU and Memory Workload Distribution","Total SMSP Elapsed Cycles","cycle","20,450,720",

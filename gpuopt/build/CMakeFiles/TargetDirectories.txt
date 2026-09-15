@@ -1,0 +1,15 @@
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/vector_add_naive.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/vector_add_optimized.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/strided_access.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/transpose.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/transpose_naive.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/transpose_padded.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/matmul.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/reduction.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/build_all.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/edit_cache.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/rebuild_cache.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/list_install_components.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/install.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/install/local.dir
+/home/shivam/GPU-Memory-Profiling-Optimization-Toolkit/gpuopt/build/CMakeFiles/install/strip.dir

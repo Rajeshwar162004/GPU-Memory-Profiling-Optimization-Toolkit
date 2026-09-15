@@ -1,0 +1,30 @@
+# GPU Architecture Threshold Configurations for GPUOpt
+
+default:
+  memory_bound_threshold_pct: 50.0
+  compute_bound_threshold_pct: 50.0
+  bank_conflict_warning_count: 1
+  l2_cache_low_hit_rate_pct: 60.0
+  l1_cache_low_hit_rate_pct: 50.0
+
+# Compute Capability 8.9 (Ada Lovelace / RTX 4060, RTX 4090)
+sm_89:
+  memory_bound_threshold_pct: 50.0
+  compute_bound_threshold_pct: 50.0
+  bank_conflict_warning_count: 1
+  l2_cache_low_hit_rate_pct: 65.0
+  l1_cache_low_hit_rate_pct: 50.0
+
+# Compute Capability 8.0 / 8.6 (Ampere / A100, RTX 3080)
+sm_80:
+  memory_bound_threshold_pct: 50.0
+  compute_bound_threshold_pct: 50.0
+  bank_conflict_warning_count: 1
+  l2_cache_low_hit_rate_pct: 60.0
+
+# Compute Capability 7.5 (Turing / RTX 2080, T4)
+sm_75:
+  memory_bound_threshold_pct: 45.0
+  compute_bound_threshold_pct: 45.0
+  bank_conflict_warning_count: 1
+  l2_cache_low_hit_rate_pct: 50.0
